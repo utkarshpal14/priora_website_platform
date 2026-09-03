@@ -1,0 +1,23 @@
+{
+  "name": "PriorApp",
+  "short_name": "PriorApp",
+  "description": "Discover Priora and future apps, games, and digital products from PriorApp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f7f2",
+  "theme_color": "#f7f7f2",
+  "icons": [
+    {
+      "src": "/priora_icons_assets/priora-icon-v5-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/priora_icons_assets/priora-icon-v5-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

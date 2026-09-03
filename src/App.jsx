@@ -110,7 +110,7 @@ function NotFound() {
 }
 
 const staticPageMeta = {
-  '/': ['PriorApp - Apps, Games & Digital Products', 'Discover Priora and future apps, games, and digital products from PriorApp.'],
+  '/': ['PriorApp – Apps, Games & Digital Products', 'Discover Priora and future apps, games, and digital products from PriorApp.'],
   '/products': ['Products | PriorApp', 'Explore useful apps and tools designed by PriorApp.'],
   '/games': ['Games | PriorApp', 'Explore playful projects from PriorApp.'],
   '/about': ['About PriorApp', 'Learn about PriorApp and the thoughtful digital products we are building.'],
