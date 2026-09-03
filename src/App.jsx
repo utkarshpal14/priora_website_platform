@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Check, ChevronRight, Gamepad2, Globe, Menu, Monitor, Smartphone, X } from 'lucide-react'
+import { ArrowUpRight, Bell, Calendar, Check, CheckSquare, ChevronRight, Gamepad2, Globe, Menu, Monitor, Smartphone, Sparkles, Target, Timer, X } from 'lucide-react'
 import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { games, products } from './data'
@@ -290,6 +290,58 @@ function Home() {
           <span className="proof-stat">500+ <small>tasks completed in beta</small></span>
         </div>
       </section>
+
+      {/* Priora Flagship SEO & Feature Spotlight */}
+      <section className="section compact-section seo-spotlight">
+        <div className="container">
+          <div className="spotlight-intro">
+            <Badge>Flagship productivity app</Badge>
+            <h2>Priora brings tasks, goals, reminders, and focus into one calm workspace.</h2>
+            <p>
+              Priora is an all-in-one productivity app designed to simplify daily planning, task management, and goal tracking. Organize your schedules, set deadline reminders, run deep work focus sessions, and maintain personal momentum—all in one distraction-free interface.
+            </p>
+          </div>
+          <div className="spotlight-grid">
+            <motion.div className="spotlight-card" {...fade}>
+              <div className="spotlight-icon"><CheckSquare size={18} /></div>
+              <h3>Task Management & Planning</h3>
+              <p>Organize daily to-dos, prioritize urgent actions, manage subtasks, and track multi-stage projects with clarity.</p>
+            </motion.div>
+            <motion.div className="spotlight-card" {...fade}>
+              <div className="spotlight-icon"><Target size={18} /></div>
+              <h3>Goal & Milestone Tracking</h3>
+              <p>Break ambitious goals into structured milestones, monitor completion rates, and celebrate steady progress.</p>
+            </motion.div>
+            <motion.div className="spotlight-card" {...fade}>
+              <div className="spotlight-icon"><Bell size={18} /></div>
+              <h3>Smart Reminders & Schedules</h3>
+              <p>Stay on top of calendar schedules, deadlines, morning summaries, and recurring reminders effortlessly.</p>
+            </motion.div>
+            <motion.div className="spotlight-card" {...fade}>
+              <div className="spotlight-icon"><Timer size={18} /></div>
+              <h3>Focus Sessions & Deep Work</h3>
+              <p>Power through work sprints with distraction-free focus timers, productivity streak tracking, and personal insights.</p>
+            </motion.div>
+          </div>
+          <div className="spotlight-bottom">
+            <div>
+              <span className="muted-label">Available on Android & Web PWA</span>
+              <p style={{ margin: 0, fontSize: '14px', color: 'var(--ink)', fontWeight: 600 }}>
+                Free to use across mobile and desktop browsers.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              <Link className="button primary" to="/products/priora">
+                Explore Priora details <ArrowUpRight size={15} />
+              </Link>
+              <a className="button secondary" href="https://priorapp.netlify.app/" target="_blank" rel="noreferrer">
+                Open web app <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section compact-section">
         <div className="container">
           <div className="section-row">
