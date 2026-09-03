@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, ChevronRight, Gamepad2, Globe, Menu, Monitor, Smar
 import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { games, products } from './data'
+import { initGA, trackPageView } from './analytics'
 import PrioraPrivacyPolicy from './PrioraPrivacyPolicy'
 import PrioraTerms from './PrioraTerms'
 import PrioraSupport from './PrioraSupport'
@@ -167,6 +168,10 @@ function getPageMeta(pathname) {
 
 function PageMeta({ pathname }) {
   useEffect(() => {
+    initGA()
+  }, [])
+
+  useEffect(() => {
     const [title, description] = getPageMeta(pathname)
     document.title = title
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
@@ -175,6 +180,7 @@ function PageMeta({ pathname }) {
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://priorapp.co.in${pathname}`)
     document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
     document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description)
+    trackPageView(pathname, title)
   }, [pathname])
   return null
 }
