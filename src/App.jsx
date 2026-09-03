@@ -563,6 +563,7 @@ function App() {
             }))}
           />
         } />
+        <Route path="/support/priora" element={<PrioraSupport />} />
         <Route path="/support/:slug" element={<ResourcePageFallback kind="support" />} />
         <Route path="/privacy-policy" element={
           <InfoPage
@@ -572,6 +573,7 @@ function App() {
             sections={[{ title: 'Privacy-first by default', body: 'Product-specific policy pages are available for each product and game.' }]}
           />
         } />
+        <Route path="/privacy/priora" element={<PrioraPrivacyPolicy />} />
         <Route path="/privacy/:slug" element={<ResourcePageFallback kind="privacy" />} />
         <Route path="/terms" element={
           <InfoPage
@@ -581,6 +583,7 @@ function App() {
             sections={[{ title: 'Using PriorApp', body: 'Product-specific terms pages are available for each product and game.' }]}
           />
         } />
+        <Route path="/terms/priora" element={<PrioraTerms />} />
         <Route path="/terms/:slug" element={<ResourcePageFallback kind="terms" />} />
         <Route path="/about" element={
           <InfoPage
