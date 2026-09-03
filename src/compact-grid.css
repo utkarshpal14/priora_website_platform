@@ -1,0 +1,23 @@
+.cards-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.coming-card{align-self:start;min-height:0;height:190px;padding:18px}
+.coming-blur{height:42px;margin-bottom:12px;filter:blur(6px)}
+.coming-blur span{font-size:28px}
+.coming-card h3{font-size:18px;margin:7px 0 3px}
+.coming-card p{font-size:12px}
+.coming-card .badge{font-size:9px}
+
+@media(max-width:960px) and (min-width:721px){
+  .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .home-hero-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+
+@media(max-width:720px){
+  .cards-grid{grid-template-columns:1fr}
+  .coming-card{min-height:150px}
+}
+
+@media(max-width:380px){
+  .availability-table{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column}
+  .hero-actions .button{width:100%}
+}

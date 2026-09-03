@@ -1,0 +1,17 @@
+import { ArrowUpRight, ChevronDown, Mail } from 'lucide-react'
+import { useState } from 'react'
+
+const faqs = [
+  ['How do I create an account?', 'Open Priora and choose Sign up. You can register with your email address or continue with Google Sign-In, then follow the verification steps if prompted.'],
+  ['How do I reset my password?', 'Choose Forgot password on the sign-in screen and follow the email instructions. If the message does not arrive, check your spam folder or contact us.'],
+  ['How do reminders work?', 'Create a reminder on a task or schedule and allow notifications when Priora asks. Your device settings, battery optimization, and notification permissions can affect delivery.'],
+  ['How do I delete my account?', 'To request deletion of your Priora account and associated data, email priorahq@gmail.com from your registered account email address with the subject "Account Deletion". We may verify ownership before processing the request.'],
+  ['How do I report a bug?', 'Email priorahq@gmail.com with your device model, Android version, Priora version, and screenshots if applicable.'],
+  ['How do I suggest a feature?', 'Send your idea to priorahq@gmail.com. Tell us what you are trying to accomplish and how the feature would help.'],
+]
+
+function FAQItem({ question, answer }) { const [open, setOpen] = useState(false); return <div className="faq-item"><button onClick={() => setOpen(!open)} aria-expanded={open}>{question}<ChevronDown size={18} className={open ? 'faq-chevron open' : 'faq-chevron'} /></button>{open && <p>{answer}</p>}</div> }
+
+export default function PrioraSupport() {
+  return <main><section className="directory-header support-header"><div className="container"><span className="badge">Priora / Support</span><h1>Let’s get Priora working for you.</h1><p>Find answers, report an issue, or send feedback to the Priora team.</p></div></section><section className="section compact-section support-content"><div className="container support-grid"><div><div className="support-block"><span className="badge">Contact</span><h2>Talk to the team.</h2><p>For support, feedback, and feature requests, email us directly. We typically respond within 2–3 business days.</p><a className="button primary" href="mailto:priorahq@gmail.com"><Mail size={16} /> priorahq@gmail.com <ArrowUpRight size={15} /></a></div><div className="support-block"><span className="badge">Account deletion</span><h2>Need to leave Priora?</h2><p>To request deletion of your Priora account and associated data, email <a className="policy-link" href="mailto:priorahq@gmail.com">priorahq@gmail.com</a> from your registered account email address with the subject "Account Deletion". We may verify ownership before processing the request.</p></div></div><div><div className="support-block"><span className="badge">Frequently asked questions</span><h2>Quick answers.</h2><div className="faq-list">{faqs.map(([question, answer]) => <FAQItem key={question} question={question} answer={answer} />)}</div></div><div className="support-block bug-report"><span className="badge">Bug reports</span><h2>Help us reproduce it.</h2><p>When reporting a bug, please send:</p><ul><li>Device model</li><li>Android version</li><li>Priora version</li><li>Screenshots, if applicable</li></ul><a className="text-link" href="mailto:priorahq@gmail.com?subject=Priora%20bug%20report">Report a bug <ArrowUpRight size={15} /></a></div></div></div></section></main>
+}

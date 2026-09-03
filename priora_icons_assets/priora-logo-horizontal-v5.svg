@@ -1,0 +1,45 @@
+<svg width="980" height="360" viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242F5C"/>
+      <stop offset="100%" stop-color="#0A0D1E"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="26%" cy="20%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="letterGrad" gradientUnits="userSpaceOnUse" x1="256" y1="140" x2="256" y2="384">
+      <stop offset="0%"  stop-color="#F6DEA0"/>
+      <stop offset="100%" stop-color="#C08A34"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(40,40) scale(0.5625)">
+    <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bg)"/>
+    <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#sheen)"/>
+    <path fill-rule="evenodd" fill="url(#letterGrad)" d="
+      M206,140 L322,140
+      A50,50 0 0 1 372,190
+      L372,246
+      A50,50 0 0 1 322,296
+      L256,296
+      L256,368
+      A16,16 0 0 1 240,384
+      L222,384
+      A16,16 0 0 1 206,368
+      Z
+      M256,174 L306,174
+      A32,32 0 0 1 338,206
+      L338,230
+      A32,32 0 0 1 306,262
+      L256,262
+      Z
+    "/>
+    <rect x="267" y="189" width="56" height="12" rx="6" fill="#F4F0E6"/>
+    <rect x="267" y="212" width="44" height="12" rx="6" fill="#F4F0E6"/>
+    <rect x="267" y="235" width="32" height="12" rx="6" fill="#F4F0E6"/>
+  </g>
+
+  <text x="365" y="232" font-family="Poppins" font-weight="700" font-size="140" letter-spacing="1" fill="#161A33">Priora</text>
+  <text x="368" y="278" font-family="Poppins" font-weight="500" font-size="28" letter-spacing="2" fill="#8B8FA3">PRIORITIZE. PLAN. PROGRESS.</text>
+</svg>
