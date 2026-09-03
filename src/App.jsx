@@ -110,17 +110,17 @@ function NotFound() {
 }
 
 const staticPageMeta = {
-  '/': ['PriorApp | Thoughtful digital products', 'Discover thoughtful apps, games, and digital tools from PriorApp.'],
+  '/': ['PriorApp - Apps, Games & Digital Products', 'Discover Priora and future apps, games, and digital products from PriorApp.'],
   '/products': ['Products | PriorApp', 'Explore useful apps and tools designed by PriorApp.'],
   '/games': ['Games | PriorApp', 'Explore playful projects from PriorApp.'],
   '/about': ['About PriorApp', 'Learn about PriorApp and the thoughtful digital products we are building.'],
-  '/faq': ['Priora Support & FAQ | PriorApp', 'Find answers to frequently asked questions about Priora and PriorApp.'],
+  '/faq': ['Frequently Asked Questions - PriorApp', 'Find answers to frequently asked questions about Priora and PriorApp.'],
   '/support': ['Support | PriorApp', 'Find help for PriorApp products or contact our support team.'],
-  '/support/priora': ['Priora Support | PriorApp', 'Get help, report an issue, or send feedback about Priora.'],
-  '/privacy-policy': ['Privacy Policy | PriorApp', 'Read the shared PriorApp privacy policy.'],
-  '/privacy/priora': ['Priora Privacy Policy | PriorApp', 'Read the privacy policy for Priora.'],
-  '/terms': ['Terms | PriorApp', 'Read the terms for PriorApp products and services.'],
-  '/terms/priora': ['Priora Terms | PriorApp', 'Read the terms of service for Priora.'],
+  '/support/priora': ['Frequently Asked Questions - PriorApp', 'Get help, report an issue, or send feedback about Priora.'],
+  '/privacy-policy': ['Priora Privacy Policy', 'Read the shared PriorApp privacy policy.'],
+  '/privacy/priora': ['Priora Privacy Policy', 'Read the privacy policy for Priora.'],
+  '/terms': ['Priora Terms of Service', 'Read the terms for PriorApp products and services.'],
+  '/terms/priora': ['Priora Terms of Service', 'Read the terms of service for Priora.'],
   '/products/priora': ['Priora | PriorApp', 'Priora brings tasks, goals, projects, and focus sessions into one calm workspace.'],
 }
 
