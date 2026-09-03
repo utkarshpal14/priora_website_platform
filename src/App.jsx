@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Check, ChevronRight, Gamepad2, Globe, Menu, Monitor, Smartphone, X } from 'lucide-react'
-import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
+import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { games, products } from './data'
 import PrioraPrivacyPolicy from './PrioraPrivacyPolicy'
@@ -114,6 +114,7 @@ const staticPageMeta = {
   '/products': ['Products | PriorApp', 'Explore useful apps and tools designed by PriorApp.'],
   '/games': ['Games | PriorApp', 'Explore playful projects from PriorApp.'],
   '/about': ['About PriorApp', 'Learn about PriorApp and the thoughtful digital products we are building.'],
+  '/faq': ['Priora Support & FAQ | PriorApp', 'Find answers to frequently asked questions about Priora and PriorApp.'],
   '/support': ['Support | PriorApp', 'Find help for PriorApp products or contact our support team.'],
   '/support/priora': ['Priora Support | PriorApp', 'Get help, report an issue, or send feedback about Priora.'],
   '/privacy-policy': ['Privacy Policy | PriorApp', 'Read the shared PriorApp privacy policy.'],
@@ -564,6 +565,7 @@ function App() {
           />
         } />
         <Route path="/support/priora" element={<PrioraSupport />} />
+        <Route path="/faq" element={<PrioraSupport />} />
         <Route path="/support/:slug" element={<ResourcePageFallback kind="support" />} />
         <Route path="/privacy-policy" element={
           <InfoPage
