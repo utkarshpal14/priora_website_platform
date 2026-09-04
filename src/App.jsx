@@ -278,7 +278,7 @@ function Home() {
             </div>
             <ProductMark item={products[0]} large />
             <h2>Priora</h2>
-            <p>Tasks, goals, projects, and focus sessions in one calm workspace.</p>
+            <p>Productivity app for task management, goals, reminders, schedules, deadlines, focus sessions, and daily planning.</p>
             <PlatformLinks item={products[0]} />
           </div>
         </div>
@@ -295,32 +295,32 @@ function Home() {
       <section className="section compact-section seo-spotlight">
         <div className="container">
           <div className="spotlight-intro">
-            <Badge>Flagship productivity app</Badge>
-            <h2>Priora brings tasks, goals, reminders, and focus into one calm workspace.</h2>
+            <Badge>Priora / Productivity App</Badge>
+            <h2>Calm productivity for daily planning and deep focus.</h2>
             <p>
-              Priora is an all-in-one productivity app designed to simplify daily planning, task management, and goal tracking. Organize your schedules, set deadline reminders, run deep work focus sessions, and maintain personal momentum—all in one distraction-free interface.
+              Priora is a productivity app for task management, goals, reminders, schedules, deadlines, focus sessions, and daily planning. It provides a structured, uncluttered workspace designed to help you stay organized and maintain steady momentum every day.
             </p>
           </div>
           <div className="spotlight-grid">
             <motion.div className="spotlight-card" {...fade}>
               <div className="spotlight-icon"><CheckSquare size={18} /></div>
               <h3>Task Management & Planning</h3>
-              <p>Organize daily to-dos, prioritize urgent actions, manage subtasks, and track multi-stage projects with clarity.</p>
+              <p>Organize daily to-dos, subtasks, priorities, and project workflows with clear structure.</p>
             </motion.div>
             <motion.div className="spotlight-card" {...fade}>
               <div className="spotlight-icon"><Target size={18} /></div>
-              <h3>Goal & Milestone Tracking</h3>
-              <p>Break ambitious goals into structured milestones, monitor completion rates, and celebrate steady progress.</p>
+              <h3>Goals & Milestones</h3>
+              <p>Set meaningful goals, break them into trackable milestones, and monitor completion rates.</p>
             </motion.div>
             <motion.div className="spotlight-card" {...fade}>
               <div className="spotlight-icon"><Bell size={18} /></div>
-              <h3>Smart Reminders & Schedules</h3>
-              <p>Stay on top of calendar schedules, deadlines, morning summaries, and recurring reminders effortlessly.</p>
+              <h3>Reminders & Schedules</h3>
+              <p>Stay ahead of calendar schedules, deadlines, morning summaries, and recurring reminders.</p>
             </motion.div>
             <motion.div className="spotlight-card" {...fade}>
               <div className="spotlight-icon"><Timer size={18} /></div>
-              <h3>Focus Sessions & Deep Work</h3>
-              <p>Power through work sprints with distraction-free focus timers, productivity streak tracking, and personal insights.</p>
+              <h3>Focus Sessions</h3>
+              <p>Run timed, distraction-free focus sessions to sustain deep concentration during work sprints.</p>
             </motion.div>
           </div>
           <div className="spotlight-bottom">
@@ -332,7 +332,7 @@ function Home() {
             </div>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <Link className="button primary" to="/products/priora">
-                Explore Priora details <ArrowUpRight size={15} />
+                View Priora details <ArrowUpRight size={15} />
               </Link>
               <a className="button secondary" href="https://priorapp.netlify.app/" target="_blank" rel="noreferrer">
                 Open web app <ArrowUpRight size={15} />
