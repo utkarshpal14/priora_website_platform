@@ -111,18 +111,18 @@ function NotFound() {
 }
 
 const staticPageMeta = {
-  '/': ['PriorApp – Apps, Games & Digital Products', 'Discover Priora and future apps, games, and digital products from PriorApp.'],
-  '/products': ['Products | PriorApp', 'Explore useful apps and tools designed by PriorApp.'],
+  '/': ['PriorApp – Apps, Games & Digital Products', 'Priora is a productivity app for task management, reminders, goal tracking, schedules, deadlines, focus sessions, and daily planning. Discover Priora and other digital products from PriorApp.'],
+  '/products': ['Products Directory | PriorApp', 'Explore Priora and other productivity apps, tools, and digital products from PriorApp.'],
   '/games': ['Games | PriorApp', 'Explore playful projects from PriorApp.'],
-  '/about': ['About PriorApp', 'Learn about PriorApp and the thoughtful digital products we are building.'],
-  '/faq': ['Frequently Asked Questions - PriorApp', 'Find answers to frequently asked questions about Priora and PriorApp.'],
+  '/about': ['About PriorApp', 'Learn about PriorApp, our flagship productivity app Priora, and the digital tools and games we build.'],
+  '/faq': ['Frequently Asked Questions - Priora & PriorApp', 'Find answers to frequently asked questions about Priora task management, reminders, focus sessions, and PriorApp.'],
   '/support': ['Support | PriorApp', 'Find help for PriorApp products or contact our support team.'],
-  '/support/priora': ['Frequently Asked Questions - PriorApp', 'Get help, report an issue, or send feedback about Priora.'],
+  '/support/priora': ['Priora Support & FAQ | PriorApp', 'Get help, report an issue, or send feedback about Priora productivity app.'],
   '/privacy-policy': ['Priora Privacy Policy', 'Read the shared PriorApp privacy policy.'],
   '/privacy/priora': ['Priora Privacy Policy', 'Read the privacy policy for Priora.'],
   '/terms': ['Priora Terms of Service', 'Read the terms for PriorApp products and services.'],
   '/terms/priora': ['Priora Terms of Service', 'Read the terms of service for Priora.'],
-  '/products/priora': ['Priora | PriorApp', 'Priora brings tasks, goals, projects, and focus sessions into one calm workspace.'],
+  '/products/priora': ['Priora – Productivity App for Task Management & Daily Planning | PriorApp', 'Priora is a productivity app for task management, reminders, goal tracking, schedules, deadlines, focus sessions, and daily planning across Android and Web.'],
 }
 
 function getPageMeta(pathname) {
@@ -180,6 +180,12 @@ function PageMeta({ pathname }) {
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://priorapp.co.in${pathname}`)
     document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
     document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description)
+    
+    const keywordsMeta = document.querySelector('meta[name="keywords"]')
+    if (keywordsMeta) {
+      keywordsMeta.setAttribute('content', 'Priora, PriorApp, productivity app, task management, daily planning, goal tracking, reminders, schedules, deadlines, focus sessions, pomodoro timer, habit tracker, todo list app, android productivity app, web pwa planner')
+    }
+    
     trackPageView(pathname, title)
   }, [pathname])
   return null
@@ -516,6 +522,41 @@ function Detail({ type }) {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+      )}
+      {item.slug === 'priora' && (
+        <section className="section compact-section seo-spotlight">
+          <div className="container">
+            <div className="spotlight-intro">
+              <Badge>Productivity features</Badge>
+              <h2>Everything built for daily planning, task execution, and deep focus.</h2>
+              <p>
+                Priora is an all-in-one productivity app designed to keep your work structured and intentional. Combine daily to-do lists, milestone-based goals, schedule reminders, and focus timers in one distraction-free space.
+              </p>
+            </div>
+            <div className="spotlight-grid">
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><CheckSquare size={18} /></div>
+                <h3>Task Management & Planning</h3>
+                <p>Create tasks, manage subtasks, organize priority levels, and plan your day with structured to-do lists.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Target size={18} /></div>
+                <h3>Goal & Milestone Tracking</h3>
+                <p>Define clear personal and project goals, break them into trackable milestones, and celebrate steady progress.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Bell size={18} /></div>
+                <h3>Smart Reminders & Schedules</h3>
+                <p>Stay ahead of deadlines, daily agendas, and upcoming commitments with timely notifications.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Timer size={18} /></div>
+                <h3>Focus Sessions & Deep Work</h3>
+                <p>Run timed work sprints with distraction-free focus sessions to build consistency and momentum.</p>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}
