@@ -6,6 +6,10 @@
   </url>
 
   <url>
+    <loc>https://priorapp.co.in/about</loc>
+  </url>
+
+  <url>
     <loc>https://priorapp.co.in/products</loc>
   </url>
 
@@ -14,11 +18,19 @@
   </url>
 
   <url>
+    <loc>https://priorapp.co.in/products/focusflow</loc>
+  </url>
+
+  <url>
     <loc>https://priorapp.co.in/games</loc>
   </url>
 
   <url>
-    <loc>https://priorapp.co.in/about</loc>
+    <loc>https://priorapp.co.in/games/orbit-run</loc>
+  </url>
+
+  <url>
+    <loc>https://priorapp.co.in/games/coming-soon</loc>
   </url>
 
   <url>

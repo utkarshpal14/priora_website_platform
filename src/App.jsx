@@ -7,6 +7,7 @@ import { initGA, trackPageView } from './analytics'
 import PrioraPrivacyPolicy from './PrioraPrivacyPolicy'
 import PrioraTerms from './PrioraTerms'
 import PrioraSupport from './PrioraSupport'
+import { getRouteMeta, DEFAULT_KEYWORDS, DEFAULT_IMAGE } from './seoData'
 
 const nav = [['Products', '/products'], ['Games', '/games'], ['About', '/about'], ['Support', '/support']]
 const allItems = [...products, ...games]
@@ -110,83 +111,50 @@ function NotFound() {
   )
 }
 
-const staticPageMeta = {
-  '/': ['PriorApp – Apps, Games & Digital Products', 'Priora is a productivity app for task management, reminders, goal tracking, schedules, deadlines, focus sessions, and daily planning. Discover Priora and other digital products from PriorApp.'],
-  '/products': ['Products Directory | PriorApp', 'Explore Priora and other productivity apps, tools, and digital products from PriorApp.'],
-  '/games': ['Games | PriorApp', 'Explore playful projects from PriorApp.'],
-  '/about': ['About PriorApp', 'Learn about PriorApp, our flagship productivity app Priora, and the digital tools and games we build.'],
-  '/faq': ['Frequently Asked Questions - Priora & PriorApp', 'Find answers to frequently asked questions about Priora task management, reminders, focus sessions, and PriorApp.'],
-  '/support': ['Support | PriorApp', 'Find help for PriorApp products or contact our support team.'],
-  '/support/priora': ['Priora Support & FAQ | PriorApp', 'Get help, report an issue, or send feedback about Priora productivity app.'],
-  '/privacy-policy': ['Priora Privacy Policy', 'Read the shared PriorApp privacy policy.'],
-  '/privacy/priora': ['Priora Privacy Policy', 'Read the privacy policy for Priora.'],
-  '/terms': ['Priora Terms of Service', 'Read the terms for PriorApp products and services.'],
-  '/terms/priora': ['Priora Terms of Service', 'Read the terms of service for Priora.'],
-  '/products/priora': ['Priora – Productivity App for Task Management & Daily Planning | PriorApp', 'Priora is a productivity app for task management, reminders, goal tracking, schedules, deadlines, focus sessions, and daily planning across Android and Web.'],
-}
-
-function getPageMeta(pathname) {
-  if (staticPageMeta[pathname]) {
-    return staticPageMeta[pathname]
-  }
-
-  const productMatch = pathname.match(/^\/products\/([^/]+)$/)
-  if (productMatch) {
-    const item = products.find(p => p.slug === productMatch[1])
-    if (item) return [`${item.name} | PriorApp`, item.detail || item.description || `Explore ${item.name} from PriorApp.`]
-  }
-
-  const gameMatch = pathname.match(/^\/games\/([^/]+)$/)
-  if (gameMatch) {
-    const item = games.find(g => g.slug === gameMatch[1])
-    if (item) return [`${item.name} | PriorApp`, item.description || `Explore ${item.name} from PriorApp.`]
-  }
-
-  const supportMatch = pathname.match(/^\/support\/([^/]+)$/)
-  if (supportMatch) {
-    const item = allItems.find(i => i.slug === supportMatch[1])
-    const name = item ? item.name : 'Product'
-    return [`${name} Support | PriorApp`, `Find help and documentation for ${name} by PriorApp.`]
-  }
-
-  const privacyMatch = pathname.match(/^\/privacy\/([^/]+)$/)
-  if (privacyMatch) {
-    const item = allItems.find(i => i.slug === privacyMatch[1])
-    const name = item ? item.name : 'Product'
-    return [`${name} Privacy Policy | PriorApp`, `Read the privacy policy for ${name} on PriorApp.`]
-  }
-
-  const termsMatch = pathname.match(/^\/terms\/([^/]+)$/)
-  if (termsMatch) {
-    const item = allItems.find(i => i.slug === termsMatch[1])
-    const name = item ? item.name : 'Product'
-    return [`${name} Terms | PriorApp`, `Read the terms of service for ${name} on PriorApp.`]
-  }
-
-  return ['Page Not Found | PriorApp', 'The page you requested could not be found on PriorApp.']
-}
-
 function PageMeta({ pathname }) {
   useEffect(() => {
     initGA()
   }, [])
 
   useEffect(() => {
-    const [title, description] = getPageMeta(pathname)
-    document.title = title
-    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://priorapp.co.in${pathname}`)
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description)
-    
-    const keywordsMeta = document.querySelector('meta[name="keywords"]')
-    if (keywordsMeta) {
-      keywordsMeta.setAttribute('content', 'Priora, PriorApp, productivity app, task management, daily planning, goal tracking, reminders, schedules, deadlines, focus sessions, pomodoro timer, habit tracker, todo list app, android productivity app, web pwa planner')
+    const meta = getRouteMeta(pathname)
+    document.title = meta.title
+
+    const setMetaTag = (selector, attribute, value) => {
+      let el = document.querySelector(selector)
+      if (!el && value) {
+        el = document.createElement('meta')
+        const matches = selector.match(/meta\[([a-zA-Z0-9_-]+)=["']?([^"']+)["']?\]/)
+        if (matches) {
+          el.setAttribute(matches[1], matches[2])
+        }
+        document.head.appendChild(el)
+      }
+      if (el && value) {
+        el.setAttribute(attribute, value)
+      }
     }
-    
-    trackPageView(pathname, title)
+
+    setMetaTag('meta[name="description"]', 'content', meta.description)
+    setMetaTag('meta[name="keywords"]', 'content', DEFAULT_KEYWORDS)
+    setMetaTag('meta[property="og:title"]', 'content', meta.title)
+    setMetaTag('meta[property="og:description"]', 'content', meta.description)
+    setMetaTag('meta[property="og:url"]', 'content', meta.canonical)
+    setMetaTag('meta[property="og:image"]', 'content', meta.image || DEFAULT_IMAGE)
+    setMetaTag('meta[property="og:image:secure_url"]', 'content', meta.image || DEFAULT_IMAGE)
+    setMetaTag('meta[name="twitter:title"]', 'content', meta.title)
+    setMetaTag('meta[name="twitter:description"]', 'content', meta.description)
+    setMetaTag('meta[name="twitter:image"]', 'content', meta.image || DEFAULT_IMAGE)
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]')
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link')
+      canonicalLink.setAttribute('rel', 'canonical')
+      document.head.appendChild(canonicalLink)
+    }
+    canonicalLink.setAttribute('href', meta.canonical)
+
+    trackPageView(pathname, meta.title)
   }, [pathname])
   return null
 }
