@@ -35,6 +35,30 @@ export const staticRouteMeta = {
     canonical: `${SITE_URL}/products/focusflow`,
     image: DEFAULT_IMAGE,
   },
+  '/games/blockzu': {
+    title: 'Blockzu — Casual 8x8 Block Puzzle Game | Play Online Free | PriorApp Games',
+    description: 'Play Blockzu free online! A modern, addictive 8x8 block puzzle game. Place shapes, clear full rows and columns, trigger satisfying combos, and beat your high score.',
+    canonical: `${SITE_URL}/games/blockzu`,
+    image: `${SITE_URL}/blockzu_assets/blockzu-banner.svg`,
+  },
+  '/support/blockzu': {
+    title: 'Blockzu Support & FAQ | PriorApp Games',
+    description: 'Find help, game guides, controls, and support for Blockzu block puzzle game.',
+    canonical: `${SITE_URL}/support/blockzu`,
+    image: `${SITE_URL}/blockzu_assets/blockzu-icon.svg`,
+  },
+  '/privacy/blockzu': {
+    title: 'Blockzu Privacy Policy | PriorApp Games',
+    description: 'Read the privacy policy and data protection practices for Blockzu game.',
+    canonical: `${SITE_URL}/privacy/blockzu`,
+    image: `${SITE_URL}/blockzu_assets/blockzu-icon.svg`,
+  },
+  '/terms/blockzu': {
+    title: 'Blockzu Terms of Service | PriorApp Games',
+    description: 'Read the terms of service and conditions for Blockzu game.',
+    canonical: `${SITE_URL}/terms/blockzu`,
+    image: `${SITE_URL}/blockzu_assets/blockzu-icon.svg`,
+  },
   '/games': {
     title: 'Games Directory | PriorApp',
     description: 'Explore playful projects, arcade journeys, and indie games from PriorApp.',

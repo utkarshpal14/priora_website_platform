@@ -181,7 +181,7 @@ function Layout({ children }) {
 function Badge({ children }) { return <span className="badge">{children}</span> }
 function ProductMark({ item, large = false }) { return <div className={`product-mark ${item.accent} ${large ? 'large' : ''}`}>{item.logoAsset ? <img src={item.logoAsset} alt={item.name} /> : item.logo}</div> }
 function PlatformIcon({ platform }) { return platform === 'Android' ? <Smartphone size={16} /> : platform === 'Web/PWA' ? <Globe size={16} /> : platform === 'Browser' ? <Gamepad2 size={16} /> : <Monitor size={16} /> }
-function PlatformLinks({ item }) { return <div className="platform-links">{item.platforms.map(platform => <a href={item.links?.[platform] || '#'} key={platform} className="button secondary" target="_blank" rel="noreferrer"><PlatformIcon platform={platform} />{platform === 'Android' ? 'Get on Google Play' : platform === 'Web/PWA' ? 'Open Web App' : `Play on ${platform}`}<ArrowUpRight size={15} /></a>)}</div> }
+function PlatformLinks({ item }) { return <div className="platform-links">{item.platforms.map(platform => <a href={item.links?.[platform] || '#'} key={platform} className="button secondary" target="_blank" rel="noreferrer"><PlatformIcon platform={platform} />{platform === 'Android' ? (item.category === 'Casual Puzzle' ? 'Get on Android' : 'Get on Google Play') : platform === 'Web/PWA' ? (item.category === 'Casual Puzzle' ? 'Play Online (Web)' : 'Open Web App') : `Play on ${platform}`}<ArrowUpRight size={15} /></a>)}</div> }
 
 function ProductCard({ item, game = false }) {
   return item.status !== 'Available' ? (
@@ -439,7 +439,7 @@ function Detail({ type }) {
             <Badge>{game ? 'Game' : item.category} / {item.status}</Badge>
             <h1>{item.name}</h1>
             <p>{item.detail || item.description}</p>
-            {!game && item.platforms.length > 0 && <PlatformLinks item={item} />}
+            {item.platforms.length > 0 && <PlatformLinks item={item} />}
             <div className="detail-links inline">
               <Badge>More information</Badge>
               <div>

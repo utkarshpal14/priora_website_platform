@@ -20,6 +20,31 @@ export const products = [
 ]
 
 export const games = [
+  {
+    name: 'Blockzu',
+    slug: 'blockzu',
+    category: 'Casual Puzzle',
+    status: 'Available',
+    description: 'A modern, addictive 8x8 block puzzle game. Place shapes, clear full rows and columns, trigger combo streaks, and beat high scores.',
+    detail: 'Blockzu is a casual 8x8 block puzzle game where players fit polyomino pieces, trigger satisfying multi-line combo streaks, unlock vibrant themes, and compete for high scores with smooth 60 FPS gameplay on Web and Android.',
+    platforms: ['Web/PWA', 'Android'],
+    logo: 'B',
+    logoAsset: '/blockzu_assets/blockzu-icon.svg',
+    accent: 'royal',
+    links: {
+      'Web/PWA': 'https://blockzu.priorapp.co.in/',
+      'Android': 'https://blockzu.priorapp.co.in/'
+    },
+    features: [
+      'Satisfying 8x8 grid drag-and-drop block placement',
+      'Explosive combo streaks & multi-line clear blasts',
+      'Multiple vibrant theme palettes (Sapphire, Neon, Sunset & Pastel)',
+      'Daily bonus rewards, achievement trophies & progressive missions',
+      '100% playable offline on Android and instant-load on Web PWA',
+      'Player-friendly zero gameplay interruptions'
+    ],
+    screenshots: []
+  },
   { name: 'Orbit Run', slug: 'orbit-run', status: 'In development', description: 'A small, satisfying arcade journey through impossible orbits.', logo: 'O', accent: 'ink', platforms: [], features: ['One-thumb controls', 'Short, replayable runs', 'A growing universe'] },
   { name: 'Coming soon', slug: 'coming-soon', status: 'On the horizon', description: 'New playful worlds are taking shape at PriorApp.', logo: '+', accent: 'coral', platforms: [], features: ['Fresh ideas', 'Thoughtful play', 'More to come'] },
 ]
