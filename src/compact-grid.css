@@ -6,37 +6,47 @@
 .coming-card p{font-size:12px}
 .coming-card .badge{font-size:9px}
 
-/* Reduced / Shorter Length & Height Games Section Cards */
-.games-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,260px));gap:12px;align-items:start;max-width:840px}
-.game-item-card{max-width:260px;min-height:122px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;border-radius:10px;background:var(--white);border:1px solid var(--line);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.game-item-card:hover{transform:translateY(-2px);border-color:#8bb7a4;box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.game-item-card .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;width:100%}
-.product-mark.small{width:32px;height:32px;font-size:16px;border-radius:8px}
-.game-item-card .card-body{flex-grow:1}
-.game-item-card .card-category{font-size:8.5px;margin-bottom:2px;color:var(--teal);letter-spacing:.04em;text-transform:uppercase}
-.game-item-card h3{font-size:15px;letter-spacing:-.03em;margin:0 0 2px;line-height:1.2;font-weight:600}
-.game-item-card p{font-size:11.5px;line-height:1.38;color:var(--muted);margin:0 0 8px;max-width:100%}
-.game-item-card .text-link{font-size:11.5px;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:2px}
+/* Compact Games Cards with LARGE, Prominent Icons */
+.games-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,270px));gap:14px;align-items:stretch;max-width:870px}
 
-.game-coming-card{max-width:260px;min-height:122px;padding:12px 14px;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between}
-.game-coming-card .coming-blur{height:20px;margin-bottom:4px;filter:blur(3px)}
-.game-coming-card .coming-blur span{font-size:16px}
-.game-coming-card h3{font-size:14px;margin:2px 0 2px}
-.game-coming-card p{font-size:11px;line-height:1.3;margin:0}
-.game-coming-card .badge{font-size:8px;padding:2px 6px}
+.game-item-card{max-width:270px;min-height:148px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;border-radius:12px;background:var(--white);border:1px solid var(--line);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.game-item-card:hover{transform:translateY(-2px);border-color:#8bb7a4;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+
+.game-item-card .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;width:100%}
+
+/* Large Icon in Compact Card */
+.game-item-card .product-mark,
+.game-coming-card .product-mark,
+.game-coming-card .coming-blur{width:52px;height:52px;min-width:52px;min-height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.06)}
+
+.game-item-card .product-mark img{display:block;width:100%;height:100%;object-fit:cover;border-radius:14px}
+
+.game-item-card .card-body{flex-grow:1}
+.game-item-card .card-category{font-size:9px;margin-bottom:2px;color:var(--teal);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.game-item-card h3{font-size:16px;letter-spacing:-.03em;margin:0 0 3px;line-height:1.22;font-weight:700}
+.game-item-card p{font-size:11.8px;line-height:1.4;color:var(--muted);margin:0 0 8px;max-width:100%}
+.game-item-card .text-link{font-size:11.8px;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:3px}
+
+.game-coming-card{max-width:270px;min-height:148px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.6);border:1px dashed var(--line);display:flex;flex-direction:column;justify-content:space-between}
+.game-coming-card .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;width:100%}
+.game-coming-card .coming-blur{background:#e8ede9;color:var(--teal);filter:none}
+.game-coming-card .coming-blur span{font-size:24px}
+.game-coming-card h3{font-size:15px;margin:2px 0 2px;font-weight:600}
+.game-coming-card p{font-size:11.5px;line-height:1.35;margin:0;color:var(--muted)}
+.game-coming-card .badge{font-size:8.5px;padding:2px 7px}
 
 @media(max-width:960px) and (min-width:721px){
   .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-  .games-cards-grid{grid-template-columns:repeat(auto-fill,minmax(200px,240px));gap:10px}
+  .games-cards-grid{grid-template-columns:repeat(auto-fill,minmax(210px,250px));gap:12px}
   .home-hero-grid{grid-template-columns:1fr 1fr;gap:40px}
 }
 
 @media(max-width:720px){
   .cards-grid{grid-template-columns:1fr}
-  .games-cards-grid{grid-template-columns:1fr;max-width:100%;gap:10px}
+  .games-cards-grid{grid-template-columns:1fr;max-width:100%;gap:12px}
   .coming-card{min-height:150px}
-  .game-item-card{max-width:100%;min-height:110px;padding:12px 14px}
-  .game-coming-card{max-width:100%;min-height:110px;padding:12px 14px}
+  .game-item-card{max-width:100%;min-height:135px;padding:14px 16px}
+  .game-coming-card{max-width:100%;min-height:135px;padding:14px 16px}
 }
 
 @media(max-width:380px){

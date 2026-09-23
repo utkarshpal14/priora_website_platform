@@ -181,9 +181,9 @@ function Layout({ children }) {
 }
 
 function Badge({ children }) { return <span className="badge">{children}</span> }
-function ProductMark({ item, large = false, small = false }) {
+function ProductMark({ item, large = false }) {
   return (
-    <div className={`product-mark ${item.accent || 'royal'} ${large ? 'large' : ''} ${small ? 'small' : ''}`}>
+    <div className={`product-mark ${item.accent || 'royal'} ${large ? 'large' : ''}`}>
       {item.logoAsset ? <img src={item.logoAsset} alt={item.name} /> : item.logo}
     </div>
   )
@@ -207,11 +207,11 @@ function PlatformLinks({ item }) {
 
 function ProductCard({ item, game = false }) {
   return item.status !== 'Available' ? (
-    <ComingSoonCard type={game ? 'Game' : 'Product'} title={item.name} label={item.description} game={game} />
+    <ComingSoonCard type={game ? 'Game' : 'Product'} title={item.name} label={item.description} game={game} item={item} />
   ) : (
     <motion.article className={`item-card ${game ? 'game-item-card' : ''}`} {...fade}>
       <div className="card-top">
-        <ProductMark item={item} small={game} />
+        <ProductMark item={item} />
         <Badge>{item.status}</Badge>
       </div>
       <div className="card-body">
@@ -226,14 +226,23 @@ function ProductCard({ item, game = false }) {
   )
 }
 
-function ComingSoonCard({ type = 'Product', title, label = 'A new idea is taking shape.', game = false }) {
+function ComingSoonCard({ type = 'Product', title, label = 'A new idea is taking shape.', game = false, item = null }) {
   const isGame = game || type === 'Game'
   return (
     <motion.article className={`coming-card ${isGame ? 'game-coming-card' : ''}`} {...fade}>
-      <div className="coming-blur"><span>{isGame ? '✦' : 'p'}</span></div>
-      <Badge>Coming soon</Badge>
-      <h3>{title || `More ${type.toLowerCase()}s, soon.`}</h3>
-      <p>{label}</p>
+      <div className="card-top">
+        {item ? (
+          <ProductMark item={item} />
+        ) : (
+          <div className="coming-blur"><span>{isGame ? '✦' : 'p'}</span></div>
+        )}
+        <Badge>{item?.status || 'Coming soon'}</Badge>
+      </div>
+      <div className="card-body">
+        <span className="card-category">{isGame ? 'In development' : 'Upcoming'}</span>
+        <h3>{title || `More ${type.toLowerCase()}s, soon.`}</h3>
+        <p>{label}</p>
+      </div>
     </motion.article>
   )
 }
@@ -358,7 +367,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Compact Games Section */}
+      {/* Compact Games Section with Large Prominent Icons */}
       <section className="section compact-section games-strip">
         <div className="container">
           <div className="section-row">
