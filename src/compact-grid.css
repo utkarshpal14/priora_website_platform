@@ -6,37 +6,37 @@
 .coming-card p{font-size:12px}
 .coming-card .badge{font-size:9px}
 
-/* Reduced / Compact Games Section Cards */
-.games-cards-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
-.game-item-card{min-height:155px;padding:15px 17px;display:flex;flex-direction:column;justify-content:space-between;border-radius:12px;background:var(--white);border:1px solid var(--line);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.game-item-card:hover{transform:translateY(-2px);border-color:#8bb7a4;box-shadow:0 4px 14px rgba(0,0,0,.04)}
-.game-item-card .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;width:100%}
-.product-mark.small{width:36px;height:36px;font-size:18px;border-radius:10px}
+/* Reduced / Shorter Length & Height Games Section Cards */
+.games-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,260px));gap:12px;align-items:start;max-width:840px}
+.game-item-card{max-width:260px;min-height:122px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;border-radius:10px;background:var(--white);border:1px solid var(--line);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.game-item-card:hover{transform:translateY(-2px);border-color:#8bb7a4;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.game-item-card .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;width:100%}
+.product-mark.small{width:32px;height:32px;font-size:16px;border-radius:8px}
 .game-item-card .card-body{flex-grow:1}
-.game-item-card .card-category{font-size:9.5px;margin-bottom:3px;color:var(--teal);letter-spacing:.04em;text-transform:uppercase}
-.game-item-card h3{font-size:16.5px;letter-spacing:-.03em;margin:0 0 3px;line-height:1.25;font-weight:600}
-.game-item-card p{font-size:12px;line-height:1.42;color:var(--muted);margin:0 0 10px;max-width:100%}
-.game-item-card .text-link{font-size:12px;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:3px}
+.game-item-card .card-category{font-size:8.5px;margin-bottom:2px;color:var(--teal);letter-spacing:.04em;text-transform:uppercase}
+.game-item-card h3{font-size:15px;letter-spacing:-.03em;margin:0 0 2px;line-height:1.2;font-weight:600}
+.game-item-card p{font-size:11.5px;line-height:1.38;color:var(--muted);margin:0 0 8px;max-width:100%}
+.game-item-card .text-link{font-size:11.5px;font-weight:600;margin:0;display:inline-flex;align-items:center;gap:2px}
 
-.game-coming-card{align-self:stretch;min-height:155px;height:100%;padding:14px 16px;border-radius:12px;display:flex;flex-direction:column;justify-content:space-between}
-.game-coming-card .coming-blur{height:26px;margin-bottom:5px;filter:blur(4px)}
-.game-coming-card .coming-blur span{font-size:18px}
-.game-coming-card h3{font-size:14.5px;margin:3px 0 2px}
-.game-coming-card p{font-size:11.5px;line-height:1.35;margin:0}
-.game-coming-card .badge{font-size:8.5px}
+.game-coming-card{max-width:260px;min-height:122px;padding:12px 14px;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between}
+.game-coming-card .coming-blur{height:20px;margin-bottom:4px;filter:blur(3px)}
+.game-coming-card .coming-blur span{font-size:16px}
+.game-coming-card h3{font-size:14px;margin:2px 0 2px}
+.game-coming-card p{font-size:11px;line-height:1.3;margin:0}
+.game-coming-card .badge{font-size:8px;padding:2px 6px}
 
 @media(max-width:960px) and (min-width:721px){
   .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-  .games-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .games-cards-grid{grid-template-columns:repeat(auto-fill,minmax(200px,240px));gap:10px}
   .home-hero-grid{grid-template-columns:1fr 1fr;gap:40px}
 }
 
 @media(max-width:720px){
   .cards-grid{grid-template-columns:1fr}
-  .games-cards-grid{grid-template-columns:1fr;gap:10px}
+  .games-cards-grid{grid-template-columns:1fr;max-width:100%;gap:10px}
   .coming-card{min-height:150px}
-  .game-item-card{min-height:140px;padding:14px 15px}
-  .game-coming-card{min-height:130px;padding:13px 14px}
+  .game-item-card{max-width:100%;min-height:110px;padding:12px 14px}
+  .game-coming-card{max-width:100%;min-height:110px;padding:12px 14px}
 }
 
 @media(max-width:380px){

@@ -45,6 +45,5 @@ export const games = [
     ],
     screenshots: []
   },
-  { name: 'Orbit Run', slug: 'orbit-run', status: 'In development', description: 'A small, satisfying arcade journey through impossible orbits.', logo: 'O', accent: 'ink', platforms: [], features: ['One-thumb controls', 'Short, replayable runs', 'A growing universe'] },
-  { name: 'Coming soon', slug: 'coming-soon', status: 'On the horizon', description: 'New playful worlds are taking shape at PriorApp.', logo: '+', accent: 'coral', platforms: [], features: ['Fresh ideas', 'Thoughtful play', 'More to come'] },
+  { name: 'Orbit Run', slug: 'orbit-run', status: 'In development', description: 'A small arcade journey through impossible orbits.', logo: 'O', accent: 'ink', platforms: [], features: ['One-thumb controls', 'Short, replayable runs', 'A growing universe'] },
 ]
