@@ -23,10 +23,10 @@ export const games = [
   {
     name: 'Blockzu',
     slug: 'blockzu',
-    category: 'Casual Puzzle',
+    category: 'Casual Block Puzzle',
     status: 'Available',
-    description: 'A modern, addictive 8x8 block puzzle game. Place shapes, clear full rows and columns, trigger combo streaks, and beat high scores.',
-    detail: 'Blockzu is a casual 8x8 block puzzle game where players fit polyomino pieces, trigger satisfying multi-line combo streaks, unlock vibrant themes, and compete for high scores with smooth 60 FPS gameplay on Web and Android.',
+    description: 'Addictive 8x8 block puzzle game. Clear lines, combo blocks, and blast high scores.',
+    detail: 'Blockzu (also known as bockzur or block blast puzzle) is a casual 8x8 block puzzle game where players fit polyomino pieces, trigger satisfying multi-line combo streaks, unlock vibrant themes, and compete for high scores with smooth 60 FPS gameplay on Web and Android.',
     platforms: ['Web/PWA', 'Android'],
     logo: 'B',
     logoAsset: '/blockzu_assets/blockzu-icon.svg',
@@ -36,12 +36,12 @@ export const games = [
       'Android': 'https://blockzu.priorapp.co.in/'
     },
     features: [
-      'Satisfying 8x8 grid drag-and-drop block placement',
-      'Explosive combo streaks & multi-line clear blasts',
+      'Classic 8x8 block puzzle grid with drag-and-drop piece placement',
+      'Satisfying block blast combos & multi-line clear score multipliers',
       'Multiple vibrant theme palettes (Sapphire, Neon, Sunset & Pastel)',
       'Daily bonus rewards, achievement trophies & progressive missions',
       '100% playable offline on Android and instant-load on Web PWA',
-      'Player-friendly zero gameplay interruptions'
+      'Player-first design with zero intrusive ads during active gameplay'
     ],
     screenshots: []
   },

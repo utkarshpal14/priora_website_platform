@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Bell, Calendar, Check, CheckSquare, ChevronRight, Gamepad2, Globe, Menu, Monitor, Smartphone, Sparkles, Target, Timer, X } from 'lucide-react'
+import { ArrowUpRight, Bell, Calendar, Check, CheckSquare, ChevronRight, Flame, Gamepad2, Globe, Layers, Menu, Monitor, ShieldCheck, Smartphone, Sparkles, Target, Timer, Trophy, X, Zap } from 'lucide-react'
 import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { games, products } from './data'
@@ -24,7 +24,7 @@ function Header() {
   }, [])
   return (
     <header className="header">
-      <div className="container nav-wrap">
+      <div className="container header-content">
         <Logo />
         <nav className={open ? 'nav open' : 'nav'}>
           {nav.map(([label, path]) => (
@@ -74,14 +74,16 @@ function Footer() {
             <small>Support</small>
             <Link to="/support">All support</Link>
             <Link to="/support/priora">Priora support</Link>
+            <Link to="/support/blockzu">Blockzu support</Link>
             <Link to="/privacy-policy">Privacy</Link>
             <Link to="/terms">Terms</Link>
           </div>
           <div>
-            <small>Priora</small>
-            <a href="https://play.google.com" target="_blank" rel="noreferrer">Google Play</a>
-            <a href="https://priorapp.netlify.app/" target="_blank" rel="noreferrer">Web app / PWA</a>
-            <Link to="/products/priora">Product details</Link>
+            <small>Featured</small>
+            <Link to="/products/priora">Priora Planner</Link>
+            <Link to="/games/blockzu">Blockzu Block Puzzle</Link>
+            <a href="https://priorapp.netlify.app/" target="_blank" rel="noreferrer">Priora Web App</a>
+            <a href="https://blockzu.priorapp.co.in/" target="_blank" rel="noreferrer">Play Blockzu Online</a>
           </div>
         </div>
       </div>
@@ -136,7 +138,7 @@ function PageMeta({ pathname }) {
     }
 
     setMetaTag('meta[name="description"]', 'content', meta.description)
-    setMetaTag('meta[name="keywords"]', 'content', DEFAULT_KEYWORDS)
+    setMetaTag('meta[name="keywords"]', 'content', meta.keywords || DEFAULT_KEYWORDS)
     setMetaTag('meta[property="og:title"]', 'content', meta.title)
     setMetaTag('meta[property="og:description"]', 'content', meta.description)
     setMetaTag('meta[property="og:url"]', 'content', meta.canonical)
@@ -179,35 +181,56 @@ function Layout({ children }) {
 }
 
 function Badge({ children }) { return <span className="badge">{children}</span> }
-function ProductMark({ item, large = false }) { return <div className={`product-mark ${item.accent} ${large ? 'large' : ''}`}>{item.logoAsset ? <img src={item.logoAsset} alt={item.name} /> : item.logo}</div> }
-function PlatformIcon({ platform }) { return platform === 'Android' ? <Smartphone size={16} /> : platform === 'Web/PWA' ? <Globe size={16} /> : platform === 'Browser' ? <Gamepad2 size={16} /> : <Monitor size={16} /> }
-function PlatformLinks({ item }) { return <div className="platform-links">{item.platforms.map(platform => <a href={item.links?.[platform] || '#'} key={platform} className="button secondary" target="_blank" rel="noreferrer"><PlatformIcon platform={platform} />{platform === 'Android' ? (item.category === 'Casual Puzzle' ? 'Get on Android' : 'Get on Google Play') : platform === 'Web/PWA' ? (item.category === 'Casual Puzzle' ? 'Play Online (Web)' : 'Open Web App') : `Play on ${platform}`}<ArrowUpRight size={15} /></a>)}</div> }
+function ProductMark({ item, large = false, small = false }) {
+  return (
+    <div className={`product-mark ${item.accent || 'royal'} ${large ? 'large' : ''} ${small ? 'small' : ''}`}>
+      {item.logoAsset ? <img src={item.logoAsset} alt={item.name} /> : item.logo}
+    </div>
+  )
+}
+function PlatformIcon({ platform }) {
+  return platform === 'Android' ? <Smartphone size={15} /> : platform === 'Web/PWA' ? <Globe size={15} /> : platform === 'Browser' ? <Gamepad2 size={15} /> : <Monitor size={15} />
+}
+function PlatformLinks({ item }) {
+  return (
+    <div className="platform-links">
+      {item.platforms.map(platform => (
+        <a href={item.links?.[platform] || '#'} key={platform} className="button secondary" target="_blank" rel="noreferrer">
+          <PlatformIcon platform={platform} />
+          {platform === 'Android' ? (item.category?.includes('Puzzle') || item.category === 'Casual Puzzle' ? 'Play on Android' : 'Get on Google Play') : platform === 'Web/PWA' ? (item.category?.includes('Puzzle') || item.category === 'Casual Puzzle' ? 'Play Online (Web)' : 'Open Web App') : `Play on ${platform}`}
+          <ArrowUpRight size={14} />
+        </a>
+      ))}
+    </div>
+  )
+}
 
 function ProductCard({ item, game = false }) {
   return item.status !== 'Available' ? (
-    <ComingSoonCard type={game ? 'Game' : 'Product'} title={item.name} label={item.description} />
+    <ComingSoonCard type={game ? 'Game' : 'Product'} title={item.name} label={item.description} game={game} />
   ) : (
-    <motion.article className="item-card" {...fade}>
+    <motion.article className={`item-card ${game ? 'game-item-card' : ''}`} {...fade}>
       <div className="card-top">
-        <ProductMark item={item} />
+        <ProductMark item={item} small={game} />
         <Badge>{item.status}</Badge>
       </div>
-      <div>
-        <span className="card-category">{game ? 'Game' : item.category}</span>
+      <div className="card-body">
+        <span className="card-category">{game ? (item.category || 'Casual Block Puzzle') : item.category}</span>
         <h3>{item.name}</h3>
         <p>{item.description}</p>
       </div>
       <Link className="text-link" to={`/${game ? 'games' : 'products'}/${item.slug}`}>
-        View details <ChevronRight size={16} />
+        {game ? 'Play & details' : 'View details'} <ChevronRight size={15} />
       </Link>
     </motion.article>
   )
 }
 
-function ComingSoonCard({ type = 'Product', title, label = 'A new idea is taking shape.' }) {
+function ComingSoonCard({ type = 'Product', title, label = 'A new idea is taking shape.', game = false }) {
+  const isGame = game || type === 'Game'
   return (
-    <motion.article className="coming-card" {...fade}>
-      <div className="coming-blur"><span>{type === 'Game' ? '✦' : 'p'}</span></div>
+    <motion.article className={`coming-card ${isGame ? 'game-coming-card' : ''}`} {...fade}>
+      <div className="coming-blur"><span>{isGame ? '✦' : 'p'}</span></div>
       <Badge>Coming soon</Badge>
       <h3>{title || `More ${type.toLowerCase()}s, soon.`}</h3>
       <p>{label}</p>
@@ -235,13 +258,13 @@ function Home() {
           <div>
             <Badge>PriorApp / Ecosystem directory</Badge>
             <h1>Useful things,<br /><em>in one place.</em></h1>
-            <p>Discover apps, games, and digital tools from PriorApp.</p>
+            <p>Discover productivity apps, casual block puzzle games, and digital tools from PriorApp.</p>
             <div className="hero-actions">
               <Link className="button primary" to="/products/priora">
                 Open Priora <ArrowUpRight size={17} />
               </Link>
-              <Link className="button quiet" to="/products">
-                Browse directory
+              <Link className="button quiet" to="/games/blockzu">
+                Play Blockzu Game
               </Link>
             </div>
           </div>
@@ -316,6 +339,7 @@ function Home() {
         </div>
       </section>
 
+      {/* Products Section */}
       <section className="section compact-section">
         <div className="container">
           <div className="section-row">
@@ -333,20 +357,22 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Compact Games Section */}
       <section className="section compact-section games-strip">
         <div className="container">
           <div className="section-row">
             <div>
-              <Badge>Games</Badge>
+              <Badge>Games / Block Puzzles & Arcade</Badge>
               <h2>Small worlds to explore.</h2>
             </div>
             <Link className="text-link" to="/games">
               View all games <ArrowUpRight size={16} />
             </Link>
           </div>
-          <div className="cards-grid">
+          <div className="cards-grid games-cards-grid">
             {games.map(item => <ProductCard item={item} game key={item.slug} />)}
-            <ComingSoonCard type="Game" label="More playful projects are on the horizon." />
+            <ComingSoonCard type="Game" label="More playful projects are on the horizon." game />
           </div>
         </div>
       </section>
@@ -360,21 +386,22 @@ function Listing({ type }) {
   return (
     <main>
       <DirectoryHeader
-        eyebrow={game ? 'Games' : 'Products'}
-        title={game ? 'Playful projects from PriorApp.' : 'The PriorApp product directory.'}
-        body={game ? 'Current and future games, collected in one place.' : 'Apps and tools designed to be useful, focused, and easy to access.'}
+        eyebrow={game ? 'Games / Block Puzzles' : 'Products'}
+        title={game ? 'Playful block puzzles & indie games.' : 'The PriorApp product directory.'}
+        body={game ? 'Discover Blockzu (the addictive 8x8 block puzzle game & block blast adventure) and upcoming casual games.' : 'Apps and tools designed to be useful, focused, and easy to access.'}
       />
-      <section className="section compact-section listing">
+      <section className={`section compact-section listing ${game ? 'games-listing-section' : ''}`}>
         <div className="container">
           <div className="listing-meta">
             <span>{items.length + 1} {game ? 'games' : 'products'}</span>
-            <span>All projects</span>
+            <span>{game ? 'Block Puzzles & Arcade' : 'All projects'}</span>
           </div>
-          <div className="cards-grid">
+          <div className={`cards-grid ${game ? 'games-cards-grid' : ''}`}>
             {items.map(item => <ProductCard item={item} game={game} key={item.slug} />)}
             <ComingSoonCard
               type={game ? 'Game' : 'Product'}
               label={game ? 'More playful projects are on the horizon.' : 'New productivity tools are being shaped for the ecosystem.'}
+              game={game}
             />
           </div>
         </div>
@@ -493,6 +520,61 @@ function Detail({ type }) {
           </div>
         </section>
       )}
+
+      {/* Dedicated Blockzu SEO & Gameplay Spotlight */}
+      {item.slug === 'blockzu' && (
+        <section className="section compact-section seo-spotlight">
+          <div className="container">
+            <div className="spotlight-intro">
+              <Badge>Blockzu / Block Puzzle Game</Badge>
+              <h2>The ultimate 8x8 block puzzle & block blast experience.</h2>
+              <p>
+                Blockzu (also searched as bockzur or block blast puzzle) is a free casual block puzzle game designed for crisp mental stimulation and relaxing play. Fit polyomino shapes onto the 8x8 grid, clear vertical and horizontal rows, trigger explosive combo blast multipliers, and beat your personal best.
+              </p>
+            </div>
+            <div className="spotlight-grid">
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Layers size={18} /></div>
+                <h3>8x8 Block Grid Placement</h3>
+                <p>Drag geometric polyomino blocks into the 8x8 matrix. Strategically position shapes to keep board spaces open for tricky 3x3 pieces.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Flame size={18} /></div>
+                <h3>Block Blast Combos & Streaks</h3>
+                <p>Clear multiple rows and columns simultaneously to trigger block blast combo multipliers, earning massive score bonuses.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><ShieldCheck size={18} /></div>
+                <h3>Zero Gameplay Ads</h3>
+                <p>Enjoy uninterrupted, fluid flow. No popups or forced video ads during active gameplay or between swift restart rounds.</p>
+              </motion.div>
+              <motion.div className="spotlight-card" {...fade}>
+                <div className="spotlight-icon"><Trophy size={18} /></div>
+                <h3>Themes, Missions & Offline</h3>
+                <p>Unlock custom themes (Sapphire, Neon, Sunset), complete daily missions, and play 100% offline on Android or Web browser.</p>
+              </motion.div>
+            </div>
+            <div className="spotlight-bottom">
+              <div>
+                <span className="muted-label">Play Online Free • No Download Needed</span>
+                <p style={{ margin: 0, fontSize: '14px', color: 'var(--ink)', fontWeight: 600 }}>
+                  Play Blockzu (bockzur / block blast) directly in your browser or install on Android.
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <a className="button primary" href="https://blockzu.priorapp.co.in/" target="_blank" rel="noreferrer">
+                  Play Blockzu Online <Gamepad2 size={16} />
+                </a>
+                <Link className="button secondary" to="/support/blockzu">
+                  Game Guide & FAQ <ArrowUpRight size={15} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Priora Flagship Spotlight */}
       {item.slug === 'priora' && (
         <section className="section compact-section seo-spotlight">
           <div className="container">
@@ -547,8 +629,8 @@ function ResourcePageFallback({ kind }) {
     kind === 'support'
       ? `Need help with ${item.name}? Email priorahq@gmail.com with your device, context, and what you expected to happen.`
       : kind === 'privacy'
-      ? `This product-specific policy for ${item.name} will be updated with the final release documentation.`
-      : `These product-specific terms for ${item.name} will be updated with the final release documentation.`
+      ? `This product-specific policy for ${item.name} explains data protection and privacy practices.`
+      : `These product-specific terms for ${item.name} describe conditions of use.`
 
   return (
     <main>
@@ -556,9 +638,9 @@ function ResourcePageFallback({ kind }) {
       <section className="section compact-section resource">
         <div className="container narrow">
           <div className="resource-contact">
-            <Badge>{kind === 'support' ? 'Contact' : 'Documentation'}</Badge>
+            <Badge>{kind === 'support' ? 'Contact & FAQ' : 'Documentation'}</Badge>
             <h2>{kind === 'support' ? 'We read every message.' : `${label} information`}</h2>
-            <p>{kind === 'support' ? 'For feedback, bug reports, and feature requests, email priorahq@gmail.com.' : body}</p>
+            <p>{kind === 'support' ? `For feedback, bug reports, and assistance with ${item.name}, email priorahq@gmail.com.` : body}</p>
             {kind === 'support' && (
               <a className="button primary" href="mailto:priorahq@gmail.com">
                 Email support <ArrowUpRight size={16} />
@@ -566,10 +648,33 @@ function ResourcePageFallback({ kind }) {
             )}
           </div>
           <div className="resource-sections">
-            <h3>{kind === 'support' ? 'Frequently asked questions' : 'Legal & compliance'}</h3>
-            <p>
-              For any questions regarding {item.name}, reach out to the PriorApp team at <a href="mailto:priorahq@gmail.com" style={{ color: 'var(--teal)', fontWeight: 600 }}>priorahq@gmail.com</a>.
-            </p>
+            <h3>{kind === 'support' ? `Frequently asked questions about ${item.name}` : 'Legal & compliance'}</h3>
+            {kind === 'support' && slug === 'blockzu' ? (
+              <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div className="info-block">
+                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>How do I score points and combos in Blockzu?</h4>
+                  <p style={{ margin: 0, fontSize: '14px', color: 'var(--muted)' }}>
+                    Place blocks onto the 8x8 grid to fill rows or columns. Clearing a line gives points. Clearing multiple rows or columns in a single turn triggers a block blast combo with exponential multiplier points.
+                  </p>
+                </div>
+                <div className="info-block">
+                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>Can I play Blockzu (bockzur) offline?</h4>
+                  <p style={{ margin: 0, fontSize: '14px', color: 'var(--muted)' }}>
+                    Yes! On Android, Blockzu is fully playable offline. On web browsers, once loaded, the PWA caches assets so you can play without an active internet connection.
+                  </p>
+                </div>
+                <div className="info-block">
+                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>Are there ads while playing the block puzzle?</h4>
+                  <p style={{ margin: 0, fontSize: '14px', color: 'var(--muted)' }}>
+                    No, Blockzu never interrupts your active puzzle gameplay with popup or video ads. Ads only appear on side banners or when you voluntarily choose to watch a rewarded ad to revive or earn extra coins.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p>
+                For any questions regarding {item.name}, reach out to the PriorApp team at <a href="mailto:priorahq@gmail.com" style={{ color: 'var(--teal)', fontWeight: 600 }}>priorahq@gmail.com</a>.
+              </p>
+            )}
           </div>
         </div>
       </section>

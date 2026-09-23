@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { staticRouteMeta, getRouteMeta, getAllRoutes, DEFAULT_IMAGE } from '../src/seoData.js'
+import { staticRouteMeta, getRouteMeta, getAllRoutes, DEFAULT_IMAGE, DEFAULT_KEYWORDS } from '../src/seoData.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -19,13 +19,20 @@ function generateRouteHtml(templateHtml, route) {
   let html = templateHtml
 
   // Update Title
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(meta.title)}</title>`)
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(meta.title)}<\/title>`)
 
   // Update Meta Description
   html = updateTag(
     html,
     /<meta\s+name=["']description["']\s+content=["'][^"']*["']\s*\/?>/i,
     `<meta name="description" content="${escapeAttribute(meta.description)}" />`
+  )
+
+  // Update Meta Keywords
+  html = updateTag(
+    html,
+    /<meta\s+name=["']keywords["']\s+content=["'][^"']*["']\s*\/?>/i,
+    `<meta name="keywords" content="${escapeAttribute(meta.keywords || DEFAULT_KEYWORDS)}" />`
   )
 
   // Update Canonical
@@ -78,6 +85,43 @@ function generateRouteHtml(templateHtml, route) {
     /<meta\s+name=["']twitter:image["']\s+content=["'][^"']*["']\s*\/?>/i,
     `<meta name="twitter:image" content="${escapeAttribute(meta.image || DEFAULT_IMAGE)}" />`
   )
+
+  // Specific Structured Schema for Blockzu
+  if (route === '/games/blockzu') {
+    const gameSchema = `
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Blockzu",
+      "alternateName": ["bockzur", "blockzur", "Block Blast Online", "8x8 Block Puzzle Game"],
+      "description": "Blockzu is an addictive 8x8 block puzzle game and block blast experience. Fit shapes, clear lines, and blast combos.",
+      "genre": ["Casual", "Puzzle", "Block Puzzle", "Brain Training"],
+      "gamePlatform": ["Web Browser", "Android", "PWA"],
+      "applicationCategory": "Game",
+      "operatingSystem": "Any",
+      "keywords": "block puzzle game, block blast, block block blast, bockzur, 8x8 block puzzle, casual block puzzle",
+      "author": {
+        "@type": "Organization",
+        "name": "PriorApp Games",
+        "url": "https://priorapp.co.in"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "PriorApp",
+        "url": "https://priorapp.co.in"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>`
+    html = html.replace('</head>', `${gameSchema}
+  </head>`)
+  }
 
   return html
 }
