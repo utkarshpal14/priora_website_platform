@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { games, products } from './data'
 import { initGA, trackPageView } from './analytics'
 import PrioraPrivacyPolicy from './PrioraPrivacyPolicy'
+import BlockzuPrivacyPolicy from './BlockzuPrivacyPolicy'
 import PrioraTerms from './PrioraTerms'
 import PrioraSupport from './PrioraSupport'
 import { getRouteMeta, DEFAULT_KEYWORDS, DEFAULT_IMAGE } from './seoData'
@@ -629,6 +630,7 @@ function ResourcePageFallback({ kind }) {
   if (kind === 'terms' && slug === 'priora') return <PrioraTerms />
   if (kind === 'support' && slug === 'priora') return <PrioraSupport />
   if (kind === 'privacy' && slug === 'priora') return <PrioraPrivacyPolicy />
+  if (kind === 'privacy' && slug === 'blockzu') return <BlockzuPrivacyPolicy />
 
   const item = allItems.find(x => x.slug === slug)
   if (!item) return <NotFound />
@@ -757,6 +759,7 @@ function App() {
           />
         } />
         <Route path="/privacy/priora" element={<PrioraPrivacyPolicy />} />
+        <Route path="/privacy/blockzu" element={<BlockzuPrivacyPolicy />} />
         <Route path="/privacy/:slug" element={<ResourcePageFallback kind="privacy" />} />
         <Route path="/terms" element={
           <InfoPage
