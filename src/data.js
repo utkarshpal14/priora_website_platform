@@ -29,7 +29,7 @@ export const games = [
     detail: 'Blockzu (also known as bockzur or block blast puzzle) is a casual 8x8 block puzzle game where players fit polyomino pieces, trigger satisfying multi-line combo streaks, unlock vibrant themes, and compete for high scores with smooth 60 FPS gameplay on Web and Android.',
     platforms: ['Web/PWA', 'Android'],
     logo: 'B',
-    logoAsset: '/blockzu_assets/blockzu-icon.svg',
+    logoAsset: '/blockzu_assets/blockzu-icon.png',
     accent: 'royal',
     links: {
       'Web/PWA': 'https://blockzu.priorapp.co.in/',
