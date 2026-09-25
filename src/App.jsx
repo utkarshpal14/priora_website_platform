@@ -7,6 +7,7 @@ import { initGA, trackPageView } from './analytics'
 import PrioraPrivacyPolicy from './PrioraPrivacyPolicy'
 import BlockzuPrivacyPolicy from './BlockzuPrivacyPolicy'
 import PrioraTerms from './PrioraTerms'
+import BlockzuTerms from './BlockzuTerms'
 import PrioraSupport from './PrioraSupport'
 import { getRouteMeta, DEFAULT_KEYWORDS, DEFAULT_IMAGE } from './seoData'
 
@@ -628,6 +629,7 @@ function Detail({ type }) {
 function ResourcePageFallback({ kind }) {
   const { slug } = useParams()
   if (kind === 'terms' && slug === 'priora') return <PrioraTerms />
+  if (kind === 'terms' && slug === 'blockzu') return <BlockzuTerms />
   if (kind === 'support' && slug === 'priora') return <PrioraSupport />
   if (kind === 'privacy' && slug === 'priora') return <PrioraPrivacyPolicy />
   if (kind === 'privacy' && slug === 'blockzu') return <BlockzuPrivacyPolicy />
@@ -770,6 +772,7 @@ function App() {
           />
         } />
         <Route path="/terms/priora" element={<PrioraTerms />} />
+        <Route path="/terms/blockzu" element={<BlockzuTerms />} />
         <Route path="/terms/:slug" element={<ResourcePageFallback kind="terms" />} />
         <Route path="/about" element={
           <InfoPage
